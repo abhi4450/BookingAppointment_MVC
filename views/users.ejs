@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>All Users</h1>
+    <ul>
+      <% for(let user of users) { %>
+      <li>
+        <%= `${user.name} ${user.email} ${user.phone}` %>
+        <form method="post" action="/admin/deleteUser/<%= user.id %>">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+      <% } %>
+    </ul>
+  </body>
+</html>
