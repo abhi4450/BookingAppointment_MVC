@@ -1,7 +1,11 @@
 const User = require("../model/user");
 
 exports.addUser = (req, res, next) => {
-  res.render("add-user");
+  User.findAll().then((users) => {
+    res.render("add-user", {
+      users: users,
+    });
+  });
 };
 
 exports.postUser = (req, res, next) => {
@@ -16,7 +20,7 @@ exports.postUser = (req, res, next) => {
   })
     .then(() => {
       console.log("new user created");
-      res.redirect("/");
+      res.redirect("/admin/insert-user");
     })
     .catch((err) => console.log(err));
 };
@@ -32,7 +36,7 @@ exports.deleteUser = (req, res, next) => {
       return user.destroy();
     })
     .then(() => {
-      res.redirect("/");
+      res.redirect("/admin/insert-user");
     })
     .catch((err) => console.log(err));
 };

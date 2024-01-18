@@ -8,7 +8,7 @@
   <body>
     <h2>Submit User Information</h2>
 
-    <form class="user-form" action="/admin/users" method="post">
+    <form class="user-form" action="/admin/insert-user" method="post">
       <div class="form-control">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required />
@@ -27,5 +27,19 @@
         <button type="submit">Submit</button>
       </div>
     </form>
+
+    <main>
+        <h1>All Users</h1>
+        <ul>
+          <% for(let user of users) { %>
+          <li>
+            <%= `${user.name} ${user.email} ${user.phone}` %>
+            <form method="post" action="/admin/insert-user/<%= user.id %>">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
+          <% } %>
+        </ul>
+    </main>
   </body>
 </html>
